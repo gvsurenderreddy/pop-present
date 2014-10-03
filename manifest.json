@@ -1,0 +1,24 @@
+{
+    "manifest_version": 2,
+    "name": "Slides Present",
+    "version": "0.1",
+
+    "description": "Contextual menu addition to quickly open Google slide presentations in a new window.",
+   "icons": {
+      "128": "icon-128.png",
+      "48": "icon-48.png",
+      "16": "icon-16.png"
+   },
+
+   "author": "Ken Frederick",
+    "background": {
+        "scripts": [
+            "main.js"
+        ]
+    },
+    "permissions": [
+        "*://*.google.com/*",
+        "tabs",
+        "contextMenus"
+    ]
+}
