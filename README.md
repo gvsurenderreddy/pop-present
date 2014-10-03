@@ -3,10 +3,17 @@ Slides-Present
 
 ![Screenshot](slides-present-screenshot.png)
 
+[Download Extension](https://github.com/frederickk/slides-present/blob/master/Slides-Present.crx?raw=true)
+
 
 
 Installation
 -------------
+
+In Chrome, choose Window > Extensions.  Drag ```Slides-Present.crx``` into the page that appears.
+
+Or, you can also simply load the uncompiled source as follows:
+
 
 1. Select ```Extensions``` under the ```Tools``` menu or go to [chrome://extensions](chrome://extensions).
 
