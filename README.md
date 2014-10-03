@@ -1,9 +1,12 @@
 Slides-Present
 ==============
 
-![Screenshot](slides-present-screenshot.png)
+Contextual menu addition to quickly open Google slide presentations in a new window.
 
 [Download Extension](https://github.com/frederickk/slides-present/blob/master/Slides-Present.crx?raw=true)
+
+![Screenshot](slides-present-screenshot.png)
+
 
 
 
