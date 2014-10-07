@@ -1,5 +1,5 @@
 /*
- * Slides Present
+ * Drive Present
  * main.js
  *
  * Ken Frederick
@@ -17,40 +17,43 @@
 //
 // -----------------------------------------------------------------------------
 var urls = [
+    '*://docs.google.com/*',
+    '*://docs.google.com/a/google.com/*',
     '*://docs.google.com/presentation/d/*',
     '*://docs.google.com/a/google.com/presentation/d/*'
-    // '*://slides.google.com/'
 ];
 
 var parent = chrome.contextMenus.create({
-    title:               'Slides Present',
+    title:               'Drive Present',
     documentUrlPatterns: urls
 });
 
 var child1 = chrome.contextMenus.create({
     type:     'normal',
     id:       'open-window',
-    title:    'Present in new window',
+    title:    'Popout new window',
     parentId: parent
 });
 
 var child2 = chrome.contextMenus.create({
     type:     'normal',
     id:       'open-present',
-    title:    'Present in new window and screen-share',
+    title:    'Popout new window and screen-share',
     parentId: parent
 });
 
 var separator = chrome.contextMenus.create({
-    type:     'separator',
-    parentId: parent
+    type:                'separator',
+    parentId:            parent,
+    documentUrlPatterns: [urls[2], urls[3]]
 });
 
 var child3 = chrome.contextMenus.create({
-    type:     'normal',
-    id:       'edit-present',
-    title:    'Edit presentation in current window',
-    parentId: parent
+    type:                'normal',
+    id:                  'edit-present',
+    title:               'Edit in current window',
+    parentId:            parent,
+    documentUrlPatterns: [urls[2], urls[3]]
 });
 
 
@@ -61,7 +64,7 @@ var child3 = chrome.contextMenus.create({
 //
 // -----------------------------------------------------------------------------
 function createUrl(url, suffix) {
-    return url.substring(0, url.lastIndexOf('/')) + suffix; //'/present';
+    return url.substring(0, url.lastIndexOf('/')) + suffix;
 };
 
 
@@ -76,13 +79,13 @@ function onSelect(info, tab) {
         active:        true
     },
     function(tabs) {
-        var url;
+        var url = tabs[0].url;
         var id = tabs[0].id;
-        alert(id);
-        // alert(url);
 
         if (info.menuItemId === 'open-window') {
-            url = createUrl(tabs[0].url, '/present');
+            url = (url.match(/presentation/))
+                ? createUrl(tabs[0].url, '/present')
+                : url;
 
             chrome.windows.create({
                 type: 'popup',
@@ -91,7 +94,9 @@ function onSelect(info, tab) {
             null);
         }
         else if (info.menuItemId === 'open-present') {
-            url = createUrl(tabs[0].url, '/present');
+            url = (url.match(/presentation/))
+                ? createUrl(tabs[0].url, '/present')
+                : url;
 
             chrome.windows.create({
                 type: 'normal',

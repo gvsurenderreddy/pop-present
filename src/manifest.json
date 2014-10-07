@@ -1,9 +1,9 @@
 {
     "manifest_version": 2,
-    "name": "Slides Present",
-    "version": "0.1",
+    "name": "Drive Present",
+    "version": "0.2",
 
-    "description": "Contextual menu addition to quickly open Google slide presentations in a new window.",
+    "description": "Contextual menu addition to popout Google Drive documents in a new window.",
    "icons": {
       "128": "icon-128.png",
       "48": "icon-48.png",

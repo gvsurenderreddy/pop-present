@@ -1,11 +1,11 @@
-Slides-Present
+Drive-Present
 ==============
 
-Contextual menu addition to quickly open Google slide presentations in a new window.
+Contextual menu addition to popout Google Drive documents in a new window.
 
-[Download Extension](https://github.com/frederickk/slides-present/blob/master/Slides-Present.crx?raw=true)
+[Download Extension](https://github.com/frederickk/drive-present/blob/master/Drive-Present.crx?raw=true)
 
-![Screenshot](slides-present-screenshot.png)
+![Screenshot](drive-present-screenshot.png)
 
 
 
@@ -13,7 +13,7 @@ Contextual menu addition to quickly open Google slide presentations in a new win
 Installation
 -------------
 
-In Chrome, choose Window > Extensions.  Drag ```Slides-Present.crx``` into the page that appears.
+In Chrome, choose Window > Extensions.  Drag ```Drive-Present.crx``` into the page that appears.
 
 Or, you can also simply load the uncompiled source as follows:
 
