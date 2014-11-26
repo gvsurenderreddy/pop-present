@@ -56,7 +56,7 @@ var separator = chrome.contextMenus.create({
 var item3 = chrome.contextMenus.create({
     type:                'normal',
     id:                  'edit-present',
-    title:               'Edit in current window',
+    title:               'Present in current window',
     parentId:            parent,
     documentUrlPatterns: [urls[2], urls[3]]
 });
@@ -72,6 +72,54 @@ var item3 = chrome.contextMenus.create({
 function createUrl(url, suffix) {
     return url.substring(0, url.lastIndexOf('/')) + suffix;
 };
+
+// -----------------------------------------------------------------------------
+function setPresentId(val) {
+    present = val;
+    chrome.contextMenus.update(
+        'open-present', {
+            title: (val === -1)
+                ? 'Popout new window and screen-share'
+                : 'Add to screen-share window'
+        },
+        null
+    );
+};
+
+function togglePresentEdit(url) {
+    var isPresent = (url.indexOf('edit') != -1);
+    chrome.contextMenus.update(
+        'edit-present', {
+            title: (isPresent)
+                ? 'Edit in current window'
+                : 'Present in current window'
+        },
+        null
+    );
+    return (isPresent)
+        ? createUrl(url, '/present')
+        : createUrl(url, '/edit');
+};
+
+// -----------------------------------------------------------------------------
+function addTab(windowId, url) {
+    chrome.tabs.create(
+        {
+            windowId: windowId,
+            url:      url,
+            active:   true
+        },
+        null
+    );
+    chrome.windows.update(
+        windowId,
+        {
+            focused: true
+        },
+        null
+    );
+};
+
 
 
 // -----------------------------------------------------------------------------
@@ -121,7 +169,7 @@ function onSelect(info, tab) {
             }
         }
         else if (info.menuItemId === 'edit-present') {
-            url = createUrl(tabs[0].url, '/edit');
+            url = togglePresentEdit(url);
 
             chrome.tabs.update(
                 id,
@@ -137,44 +185,6 @@ function onSelect(info, tab) {
 
 };
 
-// -----------------------------------------------------------------------------
-function setPresentId(val) {
-    // alert( 'setPresentId(' + val + ')' );
-    present = val;
-    chrome.contextMenus.update(
-        'open-present', {
-            title: (val === -1)
-                ? 'Popout new window and screen-share'
-                : 'Add to screen-share window'
-        },
-        null
-    );
-};
-
-function addTab(windowId, url) {
-    chrome.tabs.create(
-        {
-            windowId: windowId,
-            url:      url,
-            active:   true
-        },
-        null
-    );
-    chrome.windows.update(
-        windowId,
-        {
-            focused: true
-        },
-        null
-    );
-};
-
-
-
-// -----------------------------------------------------------------------------
-//
-// Events
-//
 // -----------------------------------------------------------------------------
 chrome.contextMenus.onClicked.addListener(onSelect);
 
