@@ -13,7 +13,7 @@ Contextual menu addition to popout Google Drive documents in a new window.
 Installation
 -------------
 
-In Chrome, choose Window > Extensions.  Drag ```Drive-Present.crx``` into the page that appears.
+In Chrome, choose Window > Extensions.  Drag ```drive-present.crx``` into the page that appears.
 
 Or, you can also simply load the uncompiled source as follows:
 
