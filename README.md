@@ -3,7 +3,7 @@ Drive-Present
 
 Contextual menu addition to popout Google Drive documents in a new window.
 
-[Download Extension](https://github.com/frederickk/drive-present/blob/master/Drive-Present.crx?raw=true)
+[Download Extension](https://github.com/frederickk/drive-present/blob/master/drive-present.crx?raw=true)
 
 ![Screenshot](drive-present-screenshot.png)
 
