@@ -136,6 +136,8 @@ function onSelect(info, tab) {
         var url = tabs[0].url;
         var id = tabs[0].id;
 
+        togglePresentEdit(url);
+
         if (info.menuItemId === 'open-window') {
             url = (url.match(/presentation/))
                 ? createUrl(tabs[0].url, '/present')
