@@ -1,7 +1,7 @@
 {
     "manifest_version": 2,
     "name": "Drive Present",
-    "version": "0.3.2",
+    "version": "0.3.3",
 
     "description": "Contextual menu addition to popout Google Drive documents in a new window.",
    "icons": {
@@ -13,7 +13,7 @@
    "author": "Ken Frederick",
     "background": {
         "scripts": [
-            "main.js"
+            "background.js"
         ]
     },
     "permissions": [

@@ -1,6 +1,6 @@
 /*
  * Drive Present
- * main.js
+ * background.js
  *
  * Ken Frederick
  * ken.frederick@gmx.de
@@ -73,36 +73,7 @@ function createUrl(url, suffix) {
     return url.substring(0, url.lastIndexOf('/')) + suffix;
 };
 
-// -----------------------------------------------------------------------------
-function setPresentId(val) {
-    present = val;
-    chrome.contextMenus.update(
-        'open-present', {
-            title: (val === -1)
-                ? 'Popout new window and screen-share'
-                : 'Add to screen-share window'
-        },
-        null
-    );
-};
-
-function togglePresentEdit(url) {
-    var isPresent = (url.indexOf('edit') != -1);
-    chrome.contextMenus.update(
-        'edit-present', {
-            title: (isPresent)
-                ? 'Edit in current window'
-                : 'Present in current window'
-        },
-        null
-    );
-    return (isPresent)
-        ? createUrl(url, '/present')
-        : createUrl(url, '/edit');
-};
-
-// -----------------------------------------------------------------------------
-function addTab(windowId, url) {
+function createTab(windowId, url) {
     chrome.tabs.create(
         {
             windowId: windowId,
@@ -120,14 +91,8 @@ function addTab(windowId, url) {
     );
 };
 
-
-
 // -----------------------------------------------------------------------------
-//
-// Events
-//
-// -----------------------------------------------------------------------------
-function onSelect(info, tab) {
+function onSelected(info, tab) {
     chrome.tabs.query({
         currentWindow: true,
         active:        true
@@ -135,8 +100,6 @@ function onSelect(info, tab) {
     function(tabs) {
         var url = tabs[0].url;
         var id = tabs[0].id;
-
-        togglePresentEdit(url);
 
         if (info.menuItemId === 'open-window') {
             url = (url.match(/presentation/))
@@ -167,11 +130,11 @@ function onSelect(info, tab) {
                 });
             }
             else {
-                addTab(present, url);
+                createTab(present, url);
             }
         }
         else if (info.menuItemId === 'edit-present') {
-            url = togglePresentEdit(url);
+            url = setPresentEdit(url);
 
             chrome.tabs.update(
                 id,
@@ -188,11 +151,71 @@ function onSelect(info, tab) {
 };
 
 // -----------------------------------------------------------------------------
-chrome.contextMenus.onClicked.addListener(onSelect);
+function setPresentId(val) {
+    present = val;
+    chrome.contextMenus.update(
+        'open-present', {
+            title: (val === -1)
+                ? 'Popout new window and screen-share'
+                : 'Add to screen-share window'
+        },
+        null
+    );
+};
 
+function setPresentEdit(url) {
+    var suffix = url.substr(url.lastIndexOf('/'));
+    var isPresent = (suffix.indexOf('present') != -1);
+    chrome.contextMenus.update(
+        'edit-present', {
+            title: (isPresent)
+                ? 'Edit in current window'
+                : 'Present in current window'
+        },
+        null
+    );
+
+    return (isPresent)
+        ? createUrl(url, '/edit')
+        : createUrl(url, '/present');
+};
+
+// -----------------------------------------------------------------------------
+function getTabUrl() {
+    return chrome.tabs.getSelected(null, function(tab) {
+        var url = tab.url;
+        setPresentEdit(url);
+
+        return url;
+    });
+};
+
+
+
+// -----------------------------------------------------------------------------
+//
+// Events
+//
+// -----------------------------------------------------------------------------
+chrome.contextMenus.onClicked.addListener(onSelected);
+
+
+// -----------------------------------------------------------------------------
 chrome.windows.onRemoved.addListener(function(windowId) {
    if (windowId === present) {
        setPresentId(-1);
    }
 });
+
+
+// -----------------------------------------------------------------------------
+chrome.tabs.onActivated.addListener(function(tabId, windowId) {
+    getTabUrl();
+});
+chrome.tabs.onUpdated.addListener(function() {
+    getTabUrl();
+});
+
+
+
 
