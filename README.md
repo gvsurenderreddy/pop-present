@@ -1,7 +1,7 @@
 Drive-Present
 ==============
 
-Contextual menu addition to popout Google Drive documents in a new window.
+Contextual menu addition to popout tabs in a new window, for effortless Hangout presentations.
 
 [Download Extension](https://github.com/frederickk/drive-present/blob/master/drive-present.crx?raw=true)
 
