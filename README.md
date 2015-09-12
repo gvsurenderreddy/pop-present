@@ -3,7 +3,7 @@ Pop-Present
 
 Contextual menu addition to popout tabs in a new window, for easier screen-sharing of sites and [Google Drive](https://drive.google.com/) documents in [Google Hangouts](https://plus.google.com/hangouts/_/present/).
 
-[Download Extension](https://github.com/frederickk/drive-present/blob/master/pop-present.crx?raw=true)
+[Download Extension](https://github.com/frederickk/pop-present/blob/master/pop-present.crx?raw=true)
 
 
 
