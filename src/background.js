@@ -241,7 +241,9 @@ function onSelected(info, tab) {
                 },
                 function(tabs) {
                     tabs.forEach(function(tab) {
-                        createTab(present, tab)
+                        if (tab.pinned === false) {
+                            createTab(present, tab)
+                        }
                     });
                 });
             }

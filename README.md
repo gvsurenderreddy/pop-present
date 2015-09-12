@@ -19,7 +19,7 @@ Create a new popup window with the contents of the active tab
 Create a new window with the contents of the active tab along with a tab for [screen-sharing](https://plus.google.com/hangouts/_/present/)
 
 **Open screen-share in current window**
-Open a tab for [screen-sharing](https://plus.google.com/hangouts/_/present/) within the active window. If [screen-sharing](https://plus.google.com/hangouts/_/present/) tab is open in another window all tabs of current window will be moved to the window containg the a tab for [screen-sharing](https://plus.google.com/hangouts/_/present/) tab.
+Open a tab for [screen-sharing](https://plus.google.com/hangouts/_/present/) within the active window. If [screen-sharing](https://plus.google.com/hangouts/_/present/) tab is open in another window all (except pinned) tabs of current window will be moved to the window containg the a tab for [screen-sharing](https://plus.google.com/hangouts/_/present/) tab.
 
 
 ![Screenshot](drive-present-screenshot-00.png)
