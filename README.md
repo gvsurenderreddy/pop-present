@@ -24,7 +24,7 @@ Open a tab for [screen-sharing](https://plus.google.com/hangouts/_/present/) wit
 
 ![Screenshot](pop-present-screenshot-00.png)
 
-If the active is a [Google Slides](https://docs.google.com/presentation/) document, an additional menu will be present.
+If the active tab is a [Google Slides](https://docs.google.com/presentation/) document, an additional menu will be present.
 
 **Present in current window**
 Toggles the view of the [Google Slides](https://docs.google.com/presentation/) document to in-browser present mode or...
