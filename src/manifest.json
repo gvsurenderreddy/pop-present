@@ -16,15 +16,6 @@
             "background.js"
         ]
     },
-    "content_scripts": [{
-        "js": [
-            "content.js"
-        ],
-        "matches": [
-            "http://*/*",
-            "https://*/*"
-        ]
-    }],
     "permissions": [
         "*://*.google.com/*",
         "tabs",
