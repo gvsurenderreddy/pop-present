@@ -1,7 +1,7 @@
 {
     "manifest_version": 2,
     "name": "Drive Present",
-    "version": "0.4.0",
+    "version": "0.4.2",
 
     "description": "Contextual menu addition to popout tabs in a new window, for effortless Hangout presentations.",
    "icons": {
@@ -28,6 +28,7 @@
     "permissions": [
         "*://*.google.com/*",
         "tabs",
-        "contextMenus"
+        "contextMenus",
+        "system.display"
     ]
 }

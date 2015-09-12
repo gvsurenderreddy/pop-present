@@ -80,90 +80,149 @@ function createUrl(url, suffix) {
     return url.substring(0, url.lastIndexOf('/')) + suffix;
 }
 
-function createTab(windowId, url) {
+/**
+ * create a tab within windowId
+ *
+ * @param  {Number} windowId
+ * @param  {Tab} tab
+ *
+ */
+function createTab(windowId, tab) {
+    // open tab in windowId
     chrome.tabs.create({
         windowId : windowId,
-        url      : url,
+        url      : tab.url,
         active   : true
     }, null);
 
+    // make the windowId come to front
     chrome.windows.update(windowId, {
         focused  : true
     }, null);
+
+    // remove tab from the window it whence came
+    chrome.tabs.remove(tab.id);
 }
 
-function createPresent(url) {
-    chrome.windows.create({
-        type : 'normal',
-        // FIX: this seems incredibly backwards... right?
-        url  : ['https' + urlsGoogle[6].replace(/\*/g, '') + 'google.com', url]
-    },
-    function(window) {
-        setPresentId(window.id);
+/**
+ * create a window the size of the screen with a GVC tab
+ * set var present; to new window
+ *
+ * @param  {[type]} tab [description]
+ *
+ */
+function createPresent(tab) {
+    chrome.system.display.getInfo(function(displayInfo) {
+        // open GVC in new window and
+        // open tab in this window
+        chrome.windows.create({
+            type   : 'normal',
+            // FIX: this seems incredibly backwards... right?
+            url    : ['https' + urlsGoogle[6].replace(/\*/g, '') + 'google.com', tab.url],
+            top    : 0,
+            left   : 0,
+            width  : displayInfo[0].bounds.width,
+            height : displayInfo[0].bounds.height
+        },
+        function(window) {
+            setPresentId(window.id);
+        });
+
+        // remove tab from the window it whence came
+        chrome.tabs.remove(tab.id);
     });
 }
 
 // -----------------------------------------------------------------------------
-function onSelected(info, tab) {
+/**
+ * look to see if GVC window is already open
+ * set that to the present window id
+ *
+ * @param  {Function} callback
+ *
+ */
+function findPresent(callback) {
+    // reset var present;
+    setPresentId(-1);
 
-    // look to see if hangout window is already open
-    // set that to the present window id
+    // check every tab for an
+    // open GVC url
     chrome.tabs.query({
         url : [urlsGoogle[6], urlsGoogle[7]]
     },
     function(tabs) {
         tabs.forEach(function(tab) {
             chrome.windows.update(tab.windowId, {
-                focused : true
+                // focused : true
+                drawAttention : true
             });
+
             setPresentId(tab.windowId);
+
+            // move GVC tab to far left
+            chrome.tabs.move(tab.id, {
+                windowId : tab.windowId,
+                index    : 0
+            }, null);
+
+            if (callback) {
+                callback(tab, present);
+            }
         });
     });
+}
 
-    // get tab of current active window
-    // and take care of it according to action
+// -----------------------------------------------------------------------------
+
+/**
+ * on selection of a context menu item—
+ * get tab of current active window
+ * and take care of it according to action
+ *
+ * @param  {[type]} info [description]
+ * @param  {Tab} tab
+ *
+ */
+function onSelected(info, tab) {
     chrome.tabs.query({
-        // currentWindow     : true,
+        // last focused...?
         lastFocusedWindow : true,
         active            : true
     },
     function(tabs) {
-        var page = tabs[0].url;
-        var id = tabs[0].id;
-
         if (info.menuItemId === 'open-window') {
-            page = (page.match(/presentation/))
-                ? createUrl(tabs[0].url, '/present')
-                : page;
+            tabs[0].url = toggleSlidePresentMode(tabs[0].url);
 
             chrome.windows.create({
                 type : 'popup',
-                url  :  page
+                url  :  tabs[0].url
             }, null);
         }
         else if (info.menuItemId === 'open-present') {
-            page = (page.match(/presentation/))
-                ? createUrl(tabs[0].url, '/present')
-                : page;
+            tabs[0].url = toggleSlidePresentMode(tabs[0].url);
 
             if (present === -1) {
-                createPresent(page);
+                createPresent(tabs[0]);
             }
             else {
-                createTab(present, page);
+                createTab(present, tabs[0]);
             }
         }
         else if (info.menuItemId === 'edit-present') {
-            page = setPresentEdit(page);
-
-            chrome.tabs.update(id, {
-                url : page
+            chrome.tabs.update(tabs[0].id, {
+                url : toggleSlideEditPresent(tabs[0].url)
             }, null);
         }
 
-
+        // toggleSlideEditPresent(tabs[0].url);
     });
+}
 
+// -----------------------------------------------------------------------------
+function onRemove(windowId) {
+    if (windowId === present) {
+       setPresentId(-1);
+   }
 }
 
 
@@ -172,8 +231,15 @@ function onSelected(info, tab) {
 //
 // Sets
 //
+/**
+ * set var present;
+ *
+ * @param {Number} val the window id of the tab with GVC url
+ *
+ */
 function setPresentId(val) {
     present = val;
+
     chrome.contextMenus.update('open-present', {
         title: (val === -1)
             ? 'Popout new window and screen-share'
@@ -181,7 +247,22 @@ function setPresentId(val) {
     }, null);
 }
 
-function setPresentEdit(url) {
+function toggleSlidePresentMode(url) {
+    return (url.match(/presentation/))
+        ? createUrl(url, '/present')
+        : url;
+}
+
+/**
+ * set menu item 'edit-present' depending
+ * on state of current Slides presentation (tab)
+ *
+ * @param {String} url
+ *
+ * @return {String} updated url
+ *
+ */
+function toggleSlideEditPresent(url) {
     var suffix = url.substr(url.lastIndexOf('/'));
     var isPresent = (suffix.indexOf('present') != -1);
 
@@ -202,14 +283,12 @@ function setPresentEdit(url) {
 //
 // Gets
 //
-function getTabUrl() {
-    // alert( document.getElementsByClassName('docs-titlebar-container')[0] );
-
+function getTabUrl(callback) {
     return chrome.tabs.getSelected(null, function(tab) {
-        var url = tab.url;
-        setPresentEdit(url);
-
-        return url;
+        if (callback) {
+            callback(tab.url);
+        }
+        return tab.url;
     });
 }
 
@@ -220,34 +299,28 @@ function getTabUrl() {
 // Events
 //
 // -----------------------------------------------------------------------------
-chrome.contextMenus.onClicked.addListener(onSelected);
-
+chrome.contextMenus.onClicked.addListener(function(info, tab) {
+    onSelected(info, tab);
+});
 
 // -----------------------------------------------------------------------------
 chrome.windows.onRemoved.addListener(function(windowId) {
-   if (windowId === present) {
-       setPresentId(-1);
-   }
+    // findPresent();
+    onRemove(windowId);
 });
-
+chrome.tabs.onRemoved.addListener(function(tabId, windowId) {
+    // findPresent();
+    onRemove(windowId);
+});
 
 // -----------------------------------------------------------------------------
 chrome.tabs.onActivated.addListener(function(tabId, windowId) {
-    getTabUrl();
-    // chrome.tabs.sendMessage(
-    //     tabId.tabId,
-    //     {
-    //         action: 'getDOM'
-    //     },
-    //     function(response) {
-    //         console.log(response);
-    //     }
-    // );
+    findPresent();
+    getTabUrl(toggleSlideEditPresent);
 });
 chrome.tabs.onUpdated.addListener(function() {
-    getTabUrl();
+    findPresent();
+    getTabUrl(toggleSlideEditPresent);
 });
-
-
 
 
