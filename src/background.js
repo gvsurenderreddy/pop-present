@@ -53,13 +53,28 @@ var item2 = chrome.contextMenus.create({
     parentId : parent
 });
 
-var separator = chrome.contextMenus.create({
+
+var separator1 = chrome.contextMenus.create({
+    type                : 'separator',
+    parentId            : parent
+});
+
+var item3 = chrome.contextMenus.create({
+    type     : 'normal',
+    id       : 'add-present',
+    title    : 'Open screen-share in current window',
+    parentId : parent,
+    enabled  : true
+});
+
+
+var separator2 = chrome.contextMenus.create({
     type                : 'separator',
     parentId            : parent,
     documentUrlPatterns : [urlsGoogle[2], urlsGoogle[3]]
 });
 
-var item3 = chrome.contextMenus.create({
+var item4 = chrome.contextMenus.create({
     type                : 'normal',
     id                  : 'edit-present',
     title               : 'Present in current window',
@@ -208,6 +223,29 @@ function onSelected(info, tab) {
                 createTab(present, tabs[0]);
             }
         }
+        else if(info.menuItemId === 'add-present') {
+            if (present === -1) {
+                createTab(tabs[0].windowId, {
+                    id  : null,
+                    // FIX: this seems incredibly backwards... right?
+                    url : 'https' + urlsGoogle[6].replace(/\*/g, '') + 'google.com'
+                },
+                function() {
+                    findPresent();
+                });
+            }
+            else {
+                // FIX: this seems nutty... more efficient way possible
+                chrome.tabs.query({
+                    currentWindow : true
+                },
+                function(tabs) {
+                    tabs.forEach(function(tab) {
+                        createTab(present, tab)
+                    });
+                });
+            }
+        }
         else if (info.menuItemId === 'edit-present') {
             chrome.tabs.update(tabs[0].id, {
                 url : toggleSlideEditPresent(tabs[0].url)
@@ -305,11 +343,11 @@ chrome.contextMenus.onClicked.addListener(function(info, tab) {
 
 // -----------------------------------------------------------------------------
 chrome.windows.onRemoved.addListener(function(windowId) {
-    // findPresent();
+    findPresent();
     onRemove(windowId);
 });
 chrome.tabs.onRemoved.addListener(function(tabId, windowId) {
-    // findPresent();
+    findPresent();
     onRemove(windowId);
 });
 

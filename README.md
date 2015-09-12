@@ -1,12 +1,36 @@
 Drive-Present
 ==============
 
-Contextual menu addition to popout tabs in a new window, for effortless Hangout presentations.
+Contextual menu addition to popout tabs in a new window, for easier screen-sharing of sites and [Google Drive](https://drive.google.com/) documents in [Google Hangouts](https://plus.google.com/hangouts/_/present/).
 
 [Download Extension](https://github.com/frederickk/drive-present/blob/master/drive-present.crx?raw=true)
 
-![Screenshot](drive-present-screenshot.png)
 
+
+Usage
+-------------
+
+![Screenshot](drive-present-screenshot-01.png)
+
+**Popout new window""
+Create a new popup window with the contents of the active tab
+
+**Popout new window and screen-share**
+Create a new window with the contents of the active tab along with a tab for [screen-sharing](https://plus.google.com/hangouts/_/present/)
+
+**Open screen-share in current window**
+Open a tab for [screen-sharing](https://plus.google.com/hangouts/_/present/) within the active window. If [screen-sharing](https://plus.google.com/hangouts/_/present/) tab is open in another window all tabs of current window will be moved to the window containg the a tab for [screen-sharing](https://plus.google.com/hangouts/_/present/) tab.
+
+
+![Screenshot](drive-present-screenshot-00.png)
+
+If the active is a [Google Slides](https://docs.google.com/presentation/) document, an additional menu will be present.
+
+**Present in current window**
+Toggles the view of the [Google Slides](https://docs.google.com/presentation/) document to in-browser present mode...
+
+**Edit in current window**
+If the [Google Slides](https://docs.google.com/presentation/) document is currently in present mode, toggle to edit mode.
 
 
 

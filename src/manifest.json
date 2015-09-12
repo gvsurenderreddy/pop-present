@@ -1,9 +1,9 @@
 {
     "manifest_version": 2,
     "name": "Drive Present",
-    "version": "0.4.2",
+    "version": "0.4.3",
 
-    "description": "Contextual menu addition to popout tabs in a new window, for effortless Hangout presentations.",
+    "description": "Contextual menu addition to popout tabs in a new window, for easier screen-sharing of sites and Google Drive documents in Google Hangouts.",
    "icons": {
       "128": "icon-128.png",
       "48": "icon-48.png",
