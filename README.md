@@ -12,7 +12,7 @@ Usage
 
 ![Screenshot](drive-present-screenshot-01.png)
 
-**Popout new window""
+**Popout new window**
 Create a new popup window with the contents of the active tab
 
 **Popout new window and screen-share**
@@ -27,10 +27,10 @@ Open a tab for [screen-sharing](https://plus.google.com/hangouts/_/present/) wit
 If the active is a [Google Slides](https://docs.google.com/presentation/) document, an additional menu will be present.
 
 **Present in current window**
-Toggles the view of the [Google Slides](https://docs.google.com/presentation/) document to in-browser present mode...
+Toggles the view of the [Google Slides](https://docs.google.com/presentation/) document to in-browser present mode or...
 
 **Edit in current window**
-If the [Google Slides](https://docs.google.com/presentation/) document is currently in present mode, toggle to edit mode.
+if the [Google Slides](https://docs.google.com/presentation/) document is currently in present mode, toggle to edit mode.
 
 
 
