@@ -1,0 +1,31 @@
+{
+    "extName": {
+      "message": "Pop Präsentation",
+      "description": "Extension name"
+    },
+    "extDesc": {
+      "message": "Contextual menu addition to popout tabs in a new window, for easier screen-sharing of sites and Google Drive documents in Google Hangouts.",
+      "description": "Extension description"
+    },
+
+    "menuOpenWindow": {
+      "message": "Neues Fenster öffnen"
+    },
+    "menuOpenPresent": {
+      "message": "Neues Fenster mit screen-share öffnen"
+    },
+    "menuOpenPresentAlt": {
+      "message": "Screen-share zum aktuellen Fenster hinzufügen"
+    },
+    "menuAddPresent": {
+      "message": "Screen-share im aktuellen Fenster öffnen"
+    },
+    "menuEditPresent": {
+      "message": "Im aktuellen Fenster präsentieren"
+    },
+    "menuEditPresentAlt": {
+      "message": "Im aktuellen Fenster bearbeiten"
+    }
+
+}
+

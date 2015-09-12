@@ -1,5 +1,5 @@
 /*
- * Drive Present
+ * Pop Present
  * background.js
  *
  * Ken Frederick
@@ -35,34 +35,34 @@ var urlsGoogle = [
 ];
 
 var parent = chrome.contextMenus.create({
-    title               : 'Drive Present',
+    title               : chrome.i18n.getMessage('extName'),
     documentUrlPatterns : urls
 });
 
 var item1 = chrome.contextMenus.create({
     type     : 'normal',
     id       : 'open-window',
-    title    : 'Popout new window',
+    title    : chrome.i18n.getMessage('menuOpenWindow'),
     parentId : parent
 });
 
 var item2 = chrome.contextMenus.create({
     type     : 'normal',
     id       : 'open-present',
-    title    : 'Popout new window and screen-share',
+    title    : chrome.i18n.getMessage('menuOpenPresent'),
     parentId : parent
 });
 
 
 var separator1 = chrome.contextMenus.create({
-    type                : 'separator',
-    parentId            : parent
+    type     : 'separator',
+    parentId : parent
 });
 
 var item3 = chrome.contextMenus.create({
     type     : 'normal',
     id       : 'add-present',
-    title    : 'Open screen-share in current window',
+    title    : chrome.i18n.getMessage('menuAddPresent'),
     parentId : parent,
     enabled  : true
 });
@@ -77,7 +77,7 @@ var separator2 = chrome.contextMenus.create({
 var item4 = chrome.contextMenus.create({
     type                : 'normal',
     id                  : 'edit-present',
-    title               : 'Present in current window',
+    title               : chrome.i18n.getMessage('menuEditPresent'),
     parentId            : parent,
     documentUrlPatterns : [urlsGoogle[2], urlsGoogle[3]]
 });
@@ -282,8 +282,8 @@ function setPresentId(val) {
 
     chrome.contextMenus.update('open-present', {
         title: (val === -1)
-            ? 'Popout new window and screen-share'
-            : 'Add to screen-share window'
+            ? chrome.i18n.getMessage('menuOpenPresent')
+            : chrome.i18n.getMessage('menuOpenPresentAlt')
     }, null);
 }
 
@@ -308,8 +308,8 @@ function toggleSlideEditPresent(url) {
 
     chrome.contextMenus.update('edit-present', {
         title: (isPresent)
-            ? 'Edit in current window'
-            : 'Present in current window'
+            ? chrome.i18n.getMessage('menuEditPresentAlt')
+            : chrome.i18n.getMessage('menuEditPresent')
     }, null);
 
     return (isPresent)

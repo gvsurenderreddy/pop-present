@@ -1,16 +1,16 @@
-Drive-Present
+Pop-Present
 ==============
 
 Contextual menu addition to popout tabs in a new window, for easier screen-sharing of sites and [Google Drive](https://drive.google.com/) documents in [Google Hangouts](https://plus.google.com/hangouts/_/present/).
 
-[Download Extension](https://github.com/frederickk/drive-present/blob/master/drive-present.crx?raw=true)
+[Download Extension](https://github.com/frederickk/drive-present/blob/master/pop-present.crx?raw=true)
 
 
 
 Usage
 -------------
 
-![Screenshot](drive-present-screenshot-01.png)
+![Screenshot](pop-present-screenshot-01.png)
 
 **Popout new window**
 Create a new popup window with the contents of the active tab
@@ -22,7 +22,7 @@ Create a new window with the contents of the active tab along with a tab for [sc
 Open a tab for [screen-sharing](https://plus.google.com/hangouts/_/present/) within the active window. If [screen-sharing](https://plus.google.com/hangouts/_/present/) tab is open in another window all (except pinned) tabs of current window will be moved to the window containg the a tab for [screen-sharing](https://plus.google.com/hangouts/_/present/) tab.
 
 
-![Screenshot](drive-present-screenshot-00.png)
+![Screenshot](pop-present-screenshot-00.png)
 
 If the active is a [Google Slides](https://docs.google.com/presentation/) document, an additional menu will be present.
 
@@ -37,7 +37,7 @@ if the [Google Slides](https://docs.google.com/presentation/) document is curren
 Installation
 -------------
 
-In Chrome, choose Window > Extensions.  Drag ```drive-present.crx``` into the page that appears.
+In Chrome, choose Window > Extensions.  Drag ```pop-present.crx``` into the page that appears.
 
 Or, you can also simply load the uncompiled source as follows:
 
