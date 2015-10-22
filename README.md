@@ -10,7 +10,7 @@ Contextual menu addition to popout tabs in a new window for easier screen-sharin
 Usage
 -------------
 
-![Screenshot](pop-present-screenshot-01.png)
+![Screenshot](assets/op-present-screenshot-01.png)
 
 **Popout new window**
 Create a new popup window with the contents of the active tab
@@ -22,7 +22,7 @@ Create a new window with the contents of the active tab along with a tab for [sc
 Open a tab for [screen-sharing](https://plus.google.com/hangouts/_/present/) within the active window. If [screen-sharing](https://plus.google.com/hangouts/_/present/) tab is open in another window all (except pinned) tabs of current window will be moved to the window containg the a tab for [screen-sharing](https://plus.google.com/hangouts/_/present/) tab.
 
 
-![Screenshot](pop-present-screenshot-00.png)
+![Screenshot](assets/pop-present-screenshot-00.png)
 
 If the active tab is a [Google Slides](https://docs.google.com/presentation/) document, an additional menu will be present.
 

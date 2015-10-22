@@ -305,7 +305,8 @@ function toggleSlidePresentMode(url) {
  */
 function toggleSlideEditPresent(url) {
     var suffix = url.substr(url.lastIndexOf('/'));
-    var isPresent = (suffix.indexOf('present') != -1);
+    // var isPresent = (suffix.indexOf('present') != -1);
+    var isPresent = (suffix.indexOf('rm=minimal') != -1);
 
     chrome.contextMenus.update('edit-present', {
         title: (isPresent)
