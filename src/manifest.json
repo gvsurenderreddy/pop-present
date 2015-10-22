@@ -2,7 +2,7 @@
     "manifest_version": 2,
     "name": "__MSG_extName__",
     "description": "__MSG_extDesc__",
-    "version": "0.4.6",
+    "version": "0.4.8",
     "default_locale": "en",
    "icons": {
       "128": "icon-128.png",
@@ -18,6 +18,7 @@
     },
     "permissions": [
         "*://*.google.com/*",
+        "*://*.googleusercontent.com/*",
         "tabs",
         "contextMenus",
         "system.display"

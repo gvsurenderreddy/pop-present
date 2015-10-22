@@ -289,7 +289,8 @@ function setPresentId(val) {
 
 function toggleSlidePresentMode(url) {
     return (url.match(/presentation/))
-        ? createUrl(url, '/present')
+        // ? createUrl(url, '/present')
+        ? createUrl(url, '?hl=en&ui=2&chrome=false&rm=demo')
         : url;
 }
 
@@ -314,7 +315,8 @@ function toggleSlideEditPresent(url) {
 
     return (isPresent)
         ? createUrl(url, '/edit')
-        : createUrl(url, '/present');
+        // : createUrl(url, '/present');
+        : createUrl(url, '?hl=en&ui=2&chrome=false&rm=demo');
 }
 
 
