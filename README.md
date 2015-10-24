@@ -55,6 +55,9 @@ Or, you can also simply load the uncompiled source as follows:
 Build
 -------------
 
+TODO: quit being lazy and implement a grunt task to compile ```./src``` to ```./dist```
+TODO: create a shell script to handle all of the following
+
 Create a compile .crx version of Pop-Present with the following command (OSX).
 
 ```bash
@@ -63,7 +66,7 @@ $ /Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --pack-extensio
 $ mv ./dist.crx ./pop-present.crx
 ```
 
-Create a .zip of ```src```
+Create a .zip of ```./src```
 
 ```bash
 $ rm ./pop-present.zip
