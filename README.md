@@ -52,6 +52,26 @@ Or, you can also simply load the uncompiled source as follows:
 
 
 
+Build
+-------------
+
+Create a compile .crx version of Pop-Present with the following command (OSX).
+
+```bash
+$ rm ./pop-present.crx
+$ /Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --pack-extension=./dist --pack-extension-key=./pop-present.pem
+$ mv ./dist.crx ./pop-present.crx
+```
+
+Create a .zip of ```src```
+
+```bash
+$ rm ./pop-present.zip
+$ zip -r -X pop-present.zip ./dist
+```
+
+
+
 License
 -------------
 The MIT License (MIT)

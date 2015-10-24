@@ -290,7 +290,7 @@ function setPresentId(val) {
 function toggleSlidePresentMode(url) {
     return (url.match(/presentation/))
         // ? createUrl(url, '/present')
-        ? createUrl(url, '?hl=en&ui=2&chrome=false&rm=minimal')
+        ? createUrl(url, '?hl=en&ui=2&chrome=false&rm=demo')
         : url;
 }
 
@@ -306,7 +306,7 @@ function toggleSlidePresentMode(url) {
 function toggleSlideEditPresent(url) {
     var suffix = url.substr(url.lastIndexOf('/'));
     // var isPresent = (suffix.indexOf('present') != -1);
-    var isPresent = (suffix.indexOf('rm=minimal') != -1);
+    var isPresent = (suffix.indexOf('rm=demo') != -1);
 
     chrome.contextMenus.update('edit-present', {
         title: (isPresent)
@@ -317,7 +317,7 @@ function toggleSlideEditPresent(url) {
     return (isPresent)
         ? createUrl(url, '/edit')
         // : createUrl(url, '/present');
-        : createUrl(url, '?hl=en&ui=2&chrome=false&rm=minimal');
+        : createUrl(url, '?hl=en&ui=2&chrome=false&rm=demo');
 }
 
 
