@@ -143,6 +143,11 @@ function createPresent(tab) {
             setPresentId(window.id);
         });
 
+        // pin present tab
+        chrome.tabs.update(tab.id, {
+            pinned : true
+        });
+
         // remove tab from the window it whence came
         chrome.tabs.remove(tab.id);
     });

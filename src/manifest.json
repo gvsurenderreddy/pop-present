@@ -2,12 +2,12 @@
     "manifest_version": 2,
     "name": "__MSG_extName__",
     "description": "__MSG_extDesc__",
-    "version": "0.4.9",
+    "version": "0.4.12",
     "default_locale": "en",
    "icons": {
       "128": "icon-128.png",
       "48": "icon-48.png",
-      "16": "icon-16.png"
+      "16": "icon-16-system.png"
    },
 
    "author": "Ken Frederick",
