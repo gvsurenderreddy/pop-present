@@ -9,23 +9,22 @@
     },
 
     "menuOpenWindow": {
-      "message": "Neues Fenster öffnen"
+      "message": "Aktueller Tab im neuen Fenster öffnen"
     },
     "menuOpenPresent": {
-      "message": "Neues Fenster mit screen-share öffnen"
+      "message": "Aktueller Tab und go/present im neuen Fenster öffnen"
     },
     "menuOpenPresentAlt": {
-      "message": "Zum screen-share Fenster hinzufügen"
+      "message": "Zum go/present Fenster hinzufügen"
     },
     "menuAddPresent": {
-      "message": "Screen-share im aktuellen Fenster öffnen"
+      "message": "go/present im aktuellen Fenster öffnen"
     },
     "menuEditPresent": {
-      "message": "Im aktuellen Fenster präsentieren"
+      "message": "Präsentationsmodus im aktuellen Fenster aktivieren"
     },
     "menuEditPresentAlt": {
-      "message": "Im aktuellen Fenster bearbeiten"
+      "message": "Bearbeitungsmodus im aktuellen Fenster aktivieren"
     }
 
 }
-
