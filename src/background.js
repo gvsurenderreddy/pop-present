@@ -34,8 +34,13 @@ var urlsGoogle = [
     '*://plus.google.com/hangouts/*',
     '*://talkgadget.google.com/*',
     '*://talkgadget.google.com/hangouts/*',
-    '*://talkgadget.google.com/hangouts/_/present/*'
+    '*://talkgadget.google.com/hangouts/_/present/*',
+    '*://hangouts.google.com/*',
+    '*://hangouts.google.com/hangouts/*',
+    '*://hangouts.google.com/hangouts/_/present/*'
 ];
+
+var urlsPresent = urlsGoogle.slice(6, urlsGoogle.length - 1);
 
 var parent = chrome.contextMenus.create({
     title               : chrome.i18n.getMessage('extName'),
@@ -171,7 +176,7 @@ function findPresent(callback) {
     // check every tab for an
     // open GVC url
     chrome.tabs.query({
-        url : [urlsGoogle[6], urlsGoogle[7], urlsGoogle[8], urlsGoogle[9], urlsGoogle[10]]
+        url : urlsPresent
     },
     function(tabs) {
         tabs.forEach(function(tab) {
