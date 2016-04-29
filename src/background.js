@@ -31,7 +31,10 @@ var urlsGoogle = [
     '*://spec.googleplex.com/*',
     '*://folio.googleplex.com/*',
     '*://plus.google.com/hangouts/_/present/*',
-    '*://plus.google.com/hangouts/*'
+    '*://plus.google.com/hangouts/*',
+    '*://talkgadget.google.com/*',
+    '*://talkgadget.google.com/hangouts/*',
+    '*://talkgadget.google.com/hangouts/_/present/*'
 ];
 
 var parent = chrome.contextMenus.create({
@@ -133,7 +136,7 @@ function createPresent(tab) {
         chrome.windows.create({
             type   : 'normal',
             // FIX: this seems incredibly backwards... right?
-            url    : ['https' + urlsGoogle[6].replace(/\*/g, '') + 'google.com', tab.url],
+            url    : ['https' + urlsGoogle[urlsGoogle.length - 1].replace(/\*/g, '') + 'google.com', tab.url],
             top    : 0,
             left   : 0,
             width  : displayInfo[0].bounds.width,
@@ -168,7 +171,7 @@ function findPresent(callback) {
     // check every tab for an
     // open GVC url
     chrome.tabs.query({
-        url : [urlsGoogle[6], urlsGoogle[7]]
+        url : [urlsGoogle[6], urlsGoogle[7], urlsGoogle[8], urlsGoogle[9], urlsGoogle[10]]
     },
     function(tabs) {
         tabs.forEach(function(tab) {
@@ -370,5 +373,3 @@ chrome.tabs.onUpdated.addListener(function() {
     findPresent();
     getTabUrl(toggleSlideEditPresent);
 });
-
-
